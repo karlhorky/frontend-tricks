@@ -1,0 +1,18 @@
+---
+layout: default
+title: Frontend Tricks
+---
+
+<h1>
+  <a href="http://work.karlhorky.com/frontend-tricks">
+    Frontend Tricks
+  </a>
+</h1>
+
+<ul>
+  {% for p in site.pages %}
+    <li>
+      <a href="{{ p.url }}">{{ p.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
