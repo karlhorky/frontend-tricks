@@ -1,0 +1,74 @@
+<style>
+  body {
+    margin: 0;
+    padding-top: 60px;
+  }
+  
+  header {
+    position: fixed;
+    top: 0;
+    background-color: tomato;
+    color: white;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+  }
+
+  .working-a-tag {
+    padding-top: 60px;
+    margin-top: -60px;
+  }
+  
+  .working-block {
+    padding-top: 60px;
+    margin-top: -60px;
+  }
+</style>
+
+<header>
+  scroll to...
+  <button class="scroll-to-working-a">working A tag</button>
+  <button class="scroll-to-working-block">working block element</button>
+  <button class="scroll-to-broken-a">broken A tag</button>
+  <button class="scroll-to-broken-block">broken block element</button>
+</header>
+
+<main>
+  <p>Sql daemon epoch all your base are belong to us packet system perl semaphore. Interpreter warez pragma kilo worm back door baz continue chown blob unix Dennis Ritchie stack mutex bar throw fopen man pages linux. Sql suitably small values bit infinite loop pwned rm -rf.</p>
+  
+  <a class="working-a">Working A tag</a>
+  
+  <p>Syn baz man pages unix vi crack leapfrog semaphore fail pwned afk null socket cd long leet emacs Donald Knuth bin grep todo pragma stdio.h January 1, 1970. Alloc gc system new finally sql stack trace syn mainframe cat machine code memory leak server salt flood tunnel in back door thread. Bytes fatal throw ctl-c Dennis Ritchie over clock eof tera perl regex.</p>
+  
+  <div class="working-block">Working block element</div>
+  
+  <p>Public injection class unix malloc error script kiddies packet less fail int I'm sorry Dave, I'm afraid I can't do that. Tarball memory leak double rsa pwned public all your base are belong to us. False bytes bang bar tarball semaphore warez cd port daemon exception mountain dew sql mainframe gcc ifdef chown private.</p>
+  
+  <a class="broken-a">Broken A tag</a>
+  
+  <p>Daemon bubble sort protected mutex overflow grep snarf crack warez I'm compiling bit if memory leak Starcraft nak script kiddies long it's a feature. Hello world public server James T. Kirk injection terminal wannabee race condition syn alloc. Gobble leapfrog finally bypass concurrently while irc gurfle do back door blob man pages sql over clock.</p>
+  
+  <div class="broken-block">Broken block element</div>
+  
+  <p>Char hello world then man pages ascii long salt while char fatal do boolean tunnel in system else foo packet sniffer float terminal int default. Trojan horse ssh ifdef /dev/null chown cache error protocol afk todo rm -rf mainframe piggyback pwned regex xss warez Starcraft try catch stdio.h bubble sort. It's a feature I'm sorry Dave, I'm afraid I can't do that *.* port bypass ip.</p>
+  
+  <p>Stdio.h epoch mutex flood wannabee do race condition sql access exception. Bar pragma man pages dereference flush todo highjack while buffer bit nak big-endian syn xss salt for d00dz. Leslie Lamport linux server error hexadecimal snarf tunnel in rm -rf firewall then shell all your base are belong to us.</p>
+
+  <p>Ascii gcc grep int flood kilo linux access mailbomb hash *.* fork semaphore frack else win bar ssh Leslie Lamport. Man pages strlen cache gnu segfault tarball race condition perl packet sniffer root cookie private chown d00dz January 1, 1970. Rsa public crack bit warez throw for void concurrently ip mutex.</p>
+</main>
+
+<script>
+  document.querySelector('.scroll-to-working-a').addEventListener('click', function() {
+    document.querySelector('.working-a').scrollIntoView();
+  });
+  document.querySelector('.scroll-to-working-block').addEventListener('click', function() {
+    document.querySelector('.working-block').scrollIntoView();
+  });
+  document.querySelector('.scroll-to-broken-a').addEventListener('click', function() {
+    document.querySelector('.broken-a').scrollIntoView();
+  });
+  document.querySelector('.scroll-to-broken-block').addEventListener('click', function() {
+    document.querySelector('.broken-block').scrollIntoView();
+  });
+</script>
