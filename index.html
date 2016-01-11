@@ -10,9 +10,10 @@ title: Frontend Tricks
 </h1>
 
 <ul>
-  {% for p in site.pages %}
+  {% assign pages = site.pages | where: "url", !"/index.html" %}
+  {% for page in pages %}
     <li>
-      <a href="{{ p.url }}">{{ p.title }}</a>
+      <a href="{{ page.url }}">{{ page.title }}</a>
     </li>
   {% endfor %}
 </ul>
