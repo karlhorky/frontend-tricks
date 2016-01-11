@@ -8,3 +8,4 @@
 {% elsif depth == 2 %}{% assign base = '..' %}
 {% elsif depth == 3 %}{% assign base = '../..' %}
 {% elsif depth == 4 %}{% assign base = '../../..' %}{% endif %}
+{% capture base %}{{ base }}/frontend-tricks{% endcapture %}
