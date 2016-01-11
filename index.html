@@ -9,6 +9,7 @@ title: Frontend Tricks
 
 <ul>
   {% for page in site.pages %}
+    base: {{ base }}
     <li>
       <a href="{{ base }}{{ page.url }}">{{ page.title }}</a>
     </li>
