@@ -4,13 +4,13 @@ title: Frontend Tricks
 ---
 
 {% include base.html %}
+
 <h1>
   Frontend Tricks
 </h1>
 
 <ul>
   {% for page in site.pages %}
-    base {{ base }}
     <li>
       <a href="{{ base }}{{ page.url }}">{{ page.title }}</a>
     </li>
