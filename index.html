@@ -4,14 +4,11 @@ title: Frontend Tricks
 ---
 
 <h1>
-  <a href="http://work.karlhorky.com/frontend-tricks">
-    Frontend Tricks
-  </a>
+  Frontend Tricks
 </h1>
 
 <ul>
-  {% assign pages = site.pages | where: "url", !"/index.html" %}
-  {% for page in pages %}
+  {% for page in site.pages %}
     <li>
       <a href="{{ page.url }}">{{ page.title }}</a>
     </li>
