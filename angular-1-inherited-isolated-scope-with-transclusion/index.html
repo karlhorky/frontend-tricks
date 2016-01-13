@@ -6,13 +6,13 @@ title: AngularJS - Inherited isolated scope with transclusion
 
 <transclude-empty-scope>
   <h2>&lt;ng-transclude&gt; (scope empty)</h2>
-  <h4>ctrl=`{{ctrl}}`</h4>
+  <h4>ctrl=`<span ng-bind="ctrl"></span>`</h4>
   <child></child>
 </transclude-empty-scope>
 
 <transclude-inherits-scope>
   <h2>manual transclusion (scope available)</h2>
-  <h4>ctrl=`{{ctrl}}`</h4>
+  <h4>ctrl=`<span ng-bind="ctrl"></span>`</h4>
   <child></child>
 </transclude-inherits-scope>
 
@@ -25,7 +25,7 @@ title: AngularJS - Inherited isolated scope with transclusion
       controller: function () {
         this.attr = 'set but not inherited';
       },
-      controllerAs: 'ignore',
+      controllerAs: 'ctrl',
       bindToController: true,
       scope: {},
       transclude: true,
@@ -57,7 +57,7 @@ title: AngularJS - Inherited isolated scope with transclusion
   app.directive('child', function() {
     return {
       restrict: 'E',
-      template: '<h4>ctrl=`{{ctrl}}` (in directive)</h4>'
+      template: '<h4>ctrl=`<span ng-bind="ctrl"></span>` (in directive)</h4>'
     }
   });
 </script>
