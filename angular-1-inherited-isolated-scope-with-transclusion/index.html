@@ -1,0 +1,64 @@
+---
+layout: angular
+title: AngularJS: Inherited isolated scope with transclusion
+---
+
+<transclude-empty-scope>
+  <h2>&lt;ng-transclude&gt; (scope empty)</h2>
+  <h4>ctrl=`{{ctrl}}`</h4>
+  <child></child>
+</transclude-empty-scope>
+
+<transclude-inherits-scope>
+  <h2>manual transclusion (scope available)</h2>
+  <h4>ctrl=`{{ctrl}}`</h4>
+  <child></child>
+</transclude-inherits-scope>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script>
+  var app = angular.module('app', []);
+
+  app.directive('transcludeEmptyScope', function () {
+    return {
+      controller: function () {
+        this.attr = 'set but not inherited';
+      },
+      controllerAs: 'ignore',
+      bindToController: true,
+      scope: {},
+      transclude: true,
+      restrict: 'E',
+      template: '<ng-transclude></ng-transclude>'
+    }
+  });
+
+  app.directive('transcludeInheritsScope', function () {
+    return {
+      controller: function () {
+        this.attr = 'has been set';
+      },
+      controllerAs: 'ctrl',
+      bindToController: true,
+      scope: {},
+      transclude: true,
+      restrict: 'E',
+      link: function (scope, element, attrs, ctrl, transclude) {
+        // Manually transclude so that we can manually create a new child scope
+        var childScope = scope.$new();
+        transclude(childScope, function (clone, scope) {
+          element.append(clone);
+        });
+      }
+    }
+  });
+
+  app.directive('child', function() {
+    return {
+      restrict: 'E',
+      template: '<h4>ctrl=`{{ctrl}}` (in directive)</h4>'
+    }
+  });
+</script>
