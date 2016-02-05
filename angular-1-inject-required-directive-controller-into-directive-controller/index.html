@@ -4,6 +4,8 @@ title: AngularJS - Inject required directive controller into directive controlle
 ---
 
 <style>
+  section { overflow: auto; }
+
   @media (min-width: 768px) {
     section { width: 46%; padding: 2%; float: left; }
   }
@@ -26,7 +28,7 @@ title: AngularJS - Inject required directive controller into directive controlle
 
 {% capture code %}
 <form name="registerForm" register-form>
-  <input name="email" ng-model="email">
+  <input name="email" type="email" ng-model="email">
 
   <h3>
     $element.inheritedData('$formController')
@@ -74,10 +76,10 @@ title: AngularJS - Inject required directive controller into directive controlle
 </h2>
 
 {% capture code %}
-<form name="registerForm">
+<form name="todoForm">
   <form-inner>
 
-    <input name="email" ng-model="email">
+    <input name="todo" ng-model="todo">
 
     <h3>
       $element.inheritedData('$formController')
