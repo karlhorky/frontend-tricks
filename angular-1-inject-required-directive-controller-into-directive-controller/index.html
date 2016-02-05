@@ -54,6 +54,7 @@ title: AngularJS - Inject required directive controller into directive controlle
       },
       controllerAs: 'register',
       require: 'form',
+      scope: {},
       bindToController: true
     }
   })
@@ -75,3 +76,50 @@ title: AngularJS - Inject required directive controller into directive controlle
   Injecting directive controller from a parent directive's controller
 </h2>
 
+{% capture code %}
+<form name="todoForm">
+  <form-inner>
+
+    <input name="todo" ng-model="todo">
+
+    <h3>
+      $element.inheritedData('$formController')
+    </h3>
+
+    <pre ng-bind="inner.formFromInheritedData | json"></pre>
+
+    <h3>
+      $element.controller('form')
+    </h3>
+
+    <pre ng-bind="inner.formFromControllerMethod | json"></pre>
+  </form-inner>
+</form>
+
+<script>
+  var app = angular.module('app', []);
+
+  app.directive('formInner', function () {
+    return {
+      controller: function ($element) {
+        this.formFromInheritedData = $element.inheritedData('$formController');
+        this.formFromControllerMethod = $element.controller('form');
+      },
+      controllerAs: 'inner',
+      require: '^form',
+      scope: {},
+      bindToController: true
+    }
+  })
+</script>
+{% endcapture %}
+
+<section>
+  {{ code }}
+</section>
+
+<section>
+  {% highlight html %}
+    {{ code }}
+  {% endhighlight %}
+</section>
