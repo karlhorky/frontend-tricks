@@ -3,57 +3,62 @@ layout: angular
 title: AngularJS - Inject required directive controller into directive controller
 ---
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<style>
+  @media (min-width: 768px) {
+    section { width: 46%; padding: 2%; float: left; }
+  }
+</style>
+
+<h1>
+  Injecting a directive controller from another directive controller
+</h1>
+
+<p>
+  ...add description of problem and why you may want to inject into directive controller (ES2015 classes, for instance)...
+</p>
 
 {% capture code %}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+<h2>
+  Injecting directive controller from a sibling directive's controller
+</h2>
+
+<form name="registerForm" register-form>
+  <input name="email" ng-model="email">
+
+  <div>
+    $element.inheritedData('$formController'): <span ng-bind="register.formFromInheritedData | json"></span>}}
+  </div>
+
+  <div>
+    $element.controller('form'): <span ng-bind="register.formFromControllerMethod | json"></span>}}
+  </div>
+</form>
+
 <script>
   var app = angular.module('app', []);
 
-  app.directive('transcludeEmptyScope', function () {
+  app.directive('registerForm', function () {
     return {
-      controller: function () {
-        this.attr = 'set but not inherited';
+      controller: function ($element) {
+        this.formFromInheritedData = $element.inheritedData('$formController');
+        this.formFromControllerMethod = $element.controller('form');
       },
-      controllerAs: 'ctrl',
-      bindToController: true,
-      scope: {},
-      transclude: true,
-      restrict: 'E',
-      template: '<ng-transclude></ng-transclude>'
+      controllerAs: 'register',
+      require: 'form',
+      bindToController: true
     }
-  });
-
-  app.directive('transcludeInheritsScope', function () {
-    return {
-      controller: function () {
-        this.attr = 'has been set';
-      },
-      controllerAs: 'ctrl',
-      bindToController: true,
-      scope: {},
-      transclude: true,
-      restrict: 'E',
-      link: function (scope, element, attrs, ctrl, transclude) {
-        // Manually transclude so that we can manually create a new child scope
-        var childScope = scope.$new();
-        transclude(childScope, function (clone, scope) {
-          element.append(clone);
-        });
-      }
-    }
-  });
-
-  app.directive('child', function() {
-    return {
-      restrict: 'E',
-      template: '<h4>ctrl=`<span ng-bind="ctrl | json"></span>` (in directive)</h4>'
-    }
-  });
+  })
 </script>
 {% endcapture %}
 
-{{ code }}
+<section>
+  {{ code }}
+</section>
 
-{% highlight html %}
-{{ code }}
-{% endhighlight %}
+<section>
+  {% highlight html %}
+    {{ code }}
+  {% endhighlight %}
+</section>
