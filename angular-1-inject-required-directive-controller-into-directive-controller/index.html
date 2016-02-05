@@ -9,6 +9,8 @@ title: AngularJS - Inject required directive controller into directive controlle
   }
 </style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
 <h1>
   Injecting a directive controller from another directive controller
 </h1>
@@ -17,23 +19,26 @@ title: AngularJS - Inject required directive controller into directive controlle
   ...add description of problem and why you may want to inject into directive controller (ES2015 classes, for instance)...
 </p>
 
-{% capture code %}
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 
 <h2>
   Injecting directive controller from a sibling directive's controller
 </h2>
 
+{% capture code %}
 <form name="registerForm" register-form>
   <input name="email" ng-model="email">
 
-  <div>
-    $element.inheritedData('$formController'): <span ng-bind="register.formFromInheritedData | json"></span>}}
-  </div>
+  <h3>
+    $element.inheritedData('$formController')
+  </h3>
 
-  <div>
-    $element.controller('form'): <span ng-bind="register.formFromControllerMethod | json"></span>}}
-  </div>
+  <pre ng-bind="register.formFromInheritedData | json"></pre>
+
+  <h3>
+    $element.controller('form')
+  </h3>
+
+  <pre ng-bind="register.formFromControllerMethod | json"></pre>
 </form>
 
 <script>
@@ -47,6 +52,58 @@ title: AngularJS - Inject required directive controller into directive controlle
       },
       controllerAs: 'register',
       require: 'form',
+      bindToController: true
+    }
+  })
+</script>
+{% endcapture %}
+
+<section>
+  {{ code }}
+</section>
+
+<section>
+  {% highlight html %}
+    {{ code }}
+  {% endhighlight %}
+</section>
+
+
+<h2>
+  Injecting directive controller from a parent directive's controller
+</h2>
+
+{% capture code %}
+<form name="registerForm">
+  <form-inner>
+
+    <input name="email" ng-model="email">
+
+    <h3>
+      $element.inheritedData('$formController')
+    </h3>
+
+    <pre ng-bind="inner.formFromInheritedData | json"></pre>
+
+    <h3>
+      $element.controller('form')
+    </h3>
+
+    <pre ng-bind="inner.formFromControllerMethod | json"></pre>
+  </form-inner>
+</form>
+
+<script>
+  var app = angular.module('app', []);
+
+  app.directive('formInner', function () {
+    return {
+      controller: function ($element) {
+        this.formFromInheritedData = $element.inheritedData('$formController');
+        this.formFromControllerMethod = $element.controller('form');
+      },
+      controllerAs: 'inner',
+      require: '^form',
       bindToController: true
     }
   })
