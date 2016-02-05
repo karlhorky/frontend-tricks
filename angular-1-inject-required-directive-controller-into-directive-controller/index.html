@@ -8,8 +8,8 @@ title: AngularJS - Inject required directive controller into directive controlle
 
   @media (min-width: 768px) {
     .row { display: flex; }
-    h2 + section { width: 370px; padding-left: 2%; }
-    h2 + section + section { flex: 1; }
+    section:first-child { width: 370px; padding-left: 2%; }
+    section:last-child { flex: 1; }
   }
 </style>
 
