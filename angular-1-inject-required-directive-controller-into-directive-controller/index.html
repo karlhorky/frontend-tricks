@@ -62,7 +62,8 @@ title: AngularJS - Inject required directive controller into directive controlle
       require: 'form',
       scope: {},
       transclude: true,
-      bindToController: true
+      bindToController: true,
+      template: '<ng-transclude></ng-transclude>'
     }
   })
 </script>
@@ -113,7 +114,8 @@ title: AngularJS - Inject required directive controller into directive controlle
       require: '^form',
       scope: {},
       transclude: true,
-      bindToController: true
+      bindToController: true,
+      template: '<ng-transclude></ng-transclude>'
     }
   })
 </script>
