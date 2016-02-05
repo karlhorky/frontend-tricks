@@ -24,11 +24,22 @@ title: AngularJS - Inject required directive controller into directive controlle
 </h1>
 
 <p>
-  ...add description of problem and why you may want to inject into directive controller (ES2015 classes, for instance)...
+  It is sometimes useful to communicate between directives. Setting one directive to be dependent on another can be done by setting a value for the `require` key in the directive definition object. The controller of the other directive can then be accessed in the link function through the fourth parameter:
 </p>
 
+{% highlight javascript %}
+angular.module('app').directive('registerForm', function () {
+  return {
+    require: 'form',
+    link: function (scope, element, attrs, controller) {
+      controller.doSomething();
+    }
+  }
+);
+{% endhighlight %}
+
 <p>
-  ...add warning about isolate scope...
+  Sometimes you may want to avoid using the link function, as in the case of using Angular 1.5's component helper. In this case, the desired directive controller needs to be injected into your directive controller. Below are a couple of solutions, courtesy of <a href="http://stackoverflow.com/questions/21231294/angularjs-inject-required-directive-controller-into-the-controller-instead-of-t">this Stack Overflow question</a>:
 </p>
 
 <h2>
@@ -39,7 +50,7 @@ title: AngularJS - Inject required directive controller into directive controlle
 <form name="registerForm" register-form></form>
 
 <script>
-  app.directive('registerForm', function () {
+  angular.module('app').directive('registerForm', function () {
     return {
       controller: function ($element) {
         this.formFromInheritedData = $element.inheritedData('$formController');
@@ -82,6 +93,7 @@ title: AngularJS - Inject required directive controller into directive controlle
   </section>
 </div>
 
+<hr>
 
 <h2>
   Injecting directive controller from a parent directive's controller
@@ -93,7 +105,7 @@ title: AngularJS - Inject required directive controller into directive controlle
 </form>
 
 <script>
-  app.directive('formInner', function () {
+  angular.module('app').directive('formInner', function () {
     return {
       controller: function ($element) {
         this.formFromInheritedData = $element.inheritedData('$formController');
