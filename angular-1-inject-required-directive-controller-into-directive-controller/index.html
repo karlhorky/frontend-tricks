@@ -35,8 +35,7 @@ title: AngularJS - Inject required directive controller into directive controlle
 </h2>
 
 {% capture code %}
-<form name="registerForm" register-form>
-</form>
+<form name="registerForm" register-form></form>
 
 <script>
   app.directive('registerForm', function () {
@@ -87,21 +86,7 @@ title: AngularJS - Inject required directive controller into directive controlle
 
 {% capture code %}
 <form name="todoForm">
-  <form-inner>
-    <input name="todo" ng-model="todo">
-
-    <h3>
-      $element.inheritedData('$formController')
-    </h3>
-
-    <pre ng-bind="inner.formFromInheritedData | json"></pre>
-
-    <h3>
-      $element.controller('form')
-    </h3>
-
-    <pre ng-bind="inner.formFromControllerMethod | json"></pre>
-  </form-inner>
+  <form-inner></form-inner>
 </form>
 
 <script>
@@ -116,7 +101,20 @@ title: AngularJS - Inject required directive controller into directive controlle
       scope: { name: '@' },
       transclude: true,
       bindToController: true,
-      template: '<ng-transclude></ng-transclude>'
+      template: '\
+        <input name="todo" ng-model="todo">\
+        \
+        <h3>\
+          $element.inheritedData("$formController")\
+        </h3>\
+        \
+        <pre ng-bind="inner.formFromInheritedData | json"></pre>\
+        \
+        <h3>\
+          $element.controller("form")\
+        </h3>\
+        \
+        <pre ng-bind="inner.formFromControllerMethod | json"></pre>'
     }
   })
 </script>
