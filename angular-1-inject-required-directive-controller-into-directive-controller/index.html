@@ -36,19 +36,6 @@ title: AngularJS - Inject required directive controller into directive controlle
 
 {% capture code %}
 <form name="registerForm" register-form>
-  <input name="email" type="email" ng-model="email">
-
-  <h3>
-    $element.inheritedData('$formController')
-  </h3>
-
-  <pre ng-bind="register.formFromInheritedData | json"></pre>
-
-  <h3>
-    $element.controller('form')
-  </h3>
-
-  <pre ng-bind="register.formFromControllerMethod | json"></pre>
 </form>
 
 <script>
@@ -60,10 +47,24 @@ title: AngularJS - Inject required directive controller into directive controlle
       },
       controllerAs: 'register',
       require: 'form',
-      scope: { name: '@' },
-      transclude: true,
+      scope: {
+        name: '@'
+      },
       bindToController: true,
-      template: '<ng-transclude></ng-transclude>'
+      template: '\
+        <input name="email" type="email" ng-model="email">\
+        \
+        <h3>\
+          $element.inheritedData('$formController')\
+        </h3>\
+        \
+        <pre ng-bind="register.formFromInheritedData | json"></pre>\
+        \
+        <h3>\
+          $element.controller('form')\
+        </h3>\
+        \
+        <pre ng-bind="register.formFromControllerMethod | json"></pre>'
     }
   })
 </script>
