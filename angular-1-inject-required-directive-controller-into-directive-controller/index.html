@@ -26,6 +26,9 @@ title: AngularJS - Inject required directive controller into directive controlle
   ...add description of problem and why you may want to inject into directive controller (ES2015 classes, for instance)...
 </p>
 
+<p>
+  ...add warning about isolate scope...
+</p>
 
 <h2>
   Injecting directive controller from a sibling directive's controller
@@ -52,13 +55,11 @@ title: AngularJS - Inject required directive controller into directive controlle
   app.directive('registerForm', function () {
     return {
       controller: function ($element) {
-        console.log('e1', $element);
         this.formFromInheritedData = $element.inheritedData('$formController');
         this.formFromControllerMethod = $element.controller('form');
       },
       controllerAs: 'register',
       require: 'form',
-      scope: {},
       bindToController: true
     }
   })
@@ -103,13 +104,11 @@ title: AngularJS - Inject required directive controller into directive controlle
   app.directive('formInner', function () {
     return {
       controller: function ($element) {
-        console.log('e2', $element);
         this.formFromInheritedData = $element.inheritedData('$formController');
         this.formFromControllerMethod = $element.controller('form');
       },
       controllerAs: 'inner',
       require: '^form',
-      scope: {},
       bindToController: true
     }
   })
