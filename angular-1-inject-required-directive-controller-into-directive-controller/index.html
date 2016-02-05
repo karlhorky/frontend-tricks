@@ -5,8 +5,55 @@ title: AngularJS - Inject required directive controller into directive controlle
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 
-```ruby
-def foo
-  puts 'foo'
-end
-```
+{% capture code %}
+<script>
+  var app = angular.module('app', []);
+
+  app.directive('transcludeEmptyScope', function () {
+    return {
+      controller: function () {
+        this.attr = 'set but not inherited';
+      },
+      controllerAs: 'ctrl',
+      bindToController: true,
+      scope: {},
+      transclude: true,
+      restrict: 'E',
+      template: '<ng-transclude></ng-transclude>'
+    }
+  });
+
+  app.directive('transcludeInheritsScope', function () {
+    return {
+      controller: function () {
+        this.attr = 'has been set';
+      },
+      controllerAs: 'ctrl',
+      bindToController: true,
+      scope: {},
+      transclude: true,
+      restrict: 'E',
+      link: function (scope, element, attrs, ctrl, transclude) {
+        // Manually transclude so that we can manually create a new child scope
+        var childScope = scope.$new();
+        transclude(childScope, function (clone, scope) {
+          element.append(clone);
+        });
+      }
+    }
+  });
+
+  app.directive('child', function() {
+    return {
+      restrict: 'E',
+      template: '<h4>ctrl=`<span ng-bind="ctrl | json"></span>` (in directive)</h4>'
+    }
+  });
+</script>
+{% endcapture %}
+
+{{ code }}
+
+{% highlight html %}
+{{ code }}
+{% endhighlight %}
