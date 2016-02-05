@@ -55,13 +55,13 @@ title: AngularJS - Inject required directive controller into directive controlle
         <input name="email" type="email" ng-model="email">\
         \
         <h3>\
-          $element.inheritedData('$formController')\
+          $element.inheritedData("$formController")\
         </h3>\
         \
         <pre ng-bind="register.formFromInheritedData | json"></pre>\
         \
         <h3>\
-          $element.controller('form')\
+          $element.controller("form")\
         </h3>\
         \
         <pre ng-bind="register.formFromControllerMethod | json"></pre>'
