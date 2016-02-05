@@ -5,6 +5,7 @@
 {% assign base = '' %}
 
 {% assign depth = page.url | split: '/' | size | plus: 1 %}
+{{depth}}
 
 {% if    depth == 1 %}{% assign base = '.' %}
 {% elsif depth == 2 %}{% assign base = '..' %}
