@@ -60,7 +60,7 @@ title: AngularJS - Inject required directive controller into directive controlle
       },
       controllerAs: 'register',
       require: 'form',
-      scope: {},
+      scope: { name: '@' },
       transclude: true,
       bindToController: true,
       template: '<ng-transclude></ng-transclude>'
@@ -112,7 +112,7 @@ title: AngularJS - Inject required directive controller into directive controlle
       },
       controllerAs: 'inner',
       require: '^form',
-      scope: {},
+      scope: { name: '@' },
       transclude: true,
       bindToController: true,
       template: '<ng-transclude></ng-transclude>'
