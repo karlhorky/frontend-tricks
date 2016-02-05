@@ -7,8 +7,9 @@ title: AngularJS - Inject required directive controller into directive controlle
   section { overflow: auto; }
 
   @media (min-width: 768px) {
-    section { width: 46%; padding: 2%; float: left; }
-    h2 { clear: both; }
+    .row { display: flex; }
+    h2 + section { width: 370px; padding-left: 2%; }
+    h2 + section + section { flex: 1; }
   }
 </style>
 
@@ -69,15 +70,17 @@ title: AngularJS - Inject required directive controller into directive controlle
 </script>
 {% endcapture %}
 
-<section>
-  {{ code }}
-</section>
-
-<section>
-  {% highlight html %}
+<div class="row">
+  <section>
     {{ code }}
-  {% endhighlight %}
-</section>
+  </section>
+
+  <section>
+    {% highlight html %}
+      {{ code }}
+    {% endhighlight %}
+  </section>
+</div>
 
 
 <h2>
@@ -120,12 +123,14 @@ title: AngularJS - Inject required directive controller into directive controlle
 </script>
 {% endcapture %}
 
-<section>
-  {{ code }}
-</section>
-
-<section>
-  {% highlight html %}
+<div class="row">
+  <section>
     {{ code }}
-  {% endhighlight %}
-</section>
+  </section>
+
+  <section>
+    {% highlight html %}
+      {{ code }}
+    {% endhighlight %}
+  </section>
+</div>
