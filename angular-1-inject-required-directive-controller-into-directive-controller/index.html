@@ -8,10 +8,15 @@ title: AngularJS - Inject required directive controller into directive controlle
 
   @media (min-width: 768px) {
     section { width: 46%; padding: 2%; float: left; }
+    h2 { clear: both; }
   }
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+<script>
+  var app = angular.module('app', []);
+</script>
 
 <h1>
   Injecting a directive controller from another directive controller
@@ -44,8 +49,6 @@ title: AngularJS - Inject required directive controller into directive controlle
 </form>
 
 <script>
-  var app = angular.module('app', []);
-
   app.directive('registerForm', function () {
     return {
       controller: function ($element) {
@@ -55,7 +58,7 @@ title: AngularJS - Inject required directive controller into directive controlle
       },
       controllerAs: 'register',
       require: 'form',
-      // scope: {},
+      scope: {},
       bindToController: true
     }
   })
@@ -106,7 +109,7 @@ title: AngularJS - Inject required directive controller into directive controlle
       },
       controllerAs: 'inner',
       require: '^form',
-      // scope: {},
+      scope: {},
       bindToController: true
     }
   })
