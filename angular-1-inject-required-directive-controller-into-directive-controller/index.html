@@ -49,6 +49,7 @@ title: AngularJS - Inject required directive controller into directive controlle
   app.directive('registerForm', function () {
     return {
       controller: function ($element) {
+        console.log('e1', $element);
         this.formFromInheritedData = $element.inheritedData('$formController');
         this.formFromControllerMethod = $element.controller('form');
       },
@@ -79,7 +80,6 @@ title: AngularJS - Inject required directive controller into directive controlle
 {% capture code %}
 <form name="todoForm">
   <form-inner>
-
     <input name="todo" ng-model="todo">
 
     <h3>
@@ -102,6 +102,7 @@ title: AngularJS - Inject required directive controller into directive controlle
   app.directive('formInner', function () {
     return {
       controller: function ($element) {
+        console.log('e2', $element);
         this.formFromInheritedData = $element.inheritedData('$formController');
         this.formFromControllerMethod = $element.controller('form');
       },
